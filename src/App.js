@@ -4,7 +4,6 @@ import Head from "./components/Head";
 import MainContainer from "./components/MainContainer";
 import Store from "./utills/Store";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Body from "./components/Body";
 import WatchVideo from "./components/WatchVideo";
 import VideoContainer from "./components/VideoContainer";
 
@@ -30,9 +29,9 @@ import VideoContainer from "./components/VideoContainer";
 function App() {
   return (
     <Provider store={Store}> 
-    <div  >
+    <div className="relative"  >
        
-        <Head/>
+        <Head />
         <RouterProvider router={appRouter}/>
     </div>
     </Provider>

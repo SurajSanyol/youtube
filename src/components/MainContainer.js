@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 const MainContainer = () => {
   
   return (
-    <div className=' flex flex-row'>
+    <div className=' flex flex-row '>
           <Sidebar/>
           <Body/>
 

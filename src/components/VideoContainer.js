@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { YOUTUBE_API } from "../utills/constant"
+// import { YOUTUBE_API } from "../utills/constant"
 import VideoCard from './VideoCard';
 import { Link } from 'react-router-dom';
+import useVideoDetails from '../utills/useVideoDetails'
+import { useSelector } from 'react-redux';
+
+
 
 const VideoContainer = () => {
+   
 
-  const [videos, setvideos] = useState([]);
+  // custom hook 
+  const videos = useVideoDetails();
+  
+  // const isOpen = useSelector((store)=>store.app.isMenuOpen);
 
-  useEffect(() => {
-    fetchVideo();
-  }, [])
 
 
-  const fetchVideo = async () => {
 
-    const data = await fetch(YOUTUBE_API);
-
-    const json = await data.json();
-
-    setvideos(json.items)
-    // console.log(json);
-  }
 
   return (
-    <div className='flex flex-wrap gap-6 justify-center mt-10'>
+    <div className='flex flex-wrap gap-6 justify-center mt-10 '>
       {
         videos.map((video) =>
           <Link to={"/watch?v="+video.id}  key={video.id}>
