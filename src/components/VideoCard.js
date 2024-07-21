@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import {channelDetails1,channelDetails2} from "../utills/constant"
-// import { json } from 'react-router-dom';
+import React from 'react'
+
 import ShimmerUi from '../utills/ShimmerUi';
 import useChannelDetails from '../utills/useChannelDetails';
 
 const VideoCard = (props) => {
-
-    // console.log(props.info);
-
-    
 
     const { snippet, statistics } = props.info;
     const { channelTitle, thumbnails, title ,channelId} = snippet;

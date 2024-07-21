@@ -53,11 +53,10 @@ const Head = () => {
 
         <RxHamburgerMenu className='h-7 w-7 cursor-pointer' onClick={() => toggleMenuHandler()} />
 
-
-
         <img className='h-7 cursor-pointer w-[] select-none' src={youTubeLogo} alt='logo' />
       </div>
-
+     
+        {/* // search bar  */}
       <div className='my-auto col-span-10 flex flex-col justify-center '>
 
         <div className=' w-full flex flex-row justify-center '>
