@@ -6,6 +6,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { useDispatch } from 'react-redux';
 import { toggleMenu } from '../utills/SideBarSlice';
 import { YOUTUBE_SUGG_API } from '../utills/constant'
+import _ from 'lodash';
 
 
 
@@ -18,25 +19,28 @@ const Head = () => {
 
   useEffect(() => {
 
-    const timer = setTimeout(() => {
-      suggestionApi()
-    }, 170);
+    // const timer = setTimeout(() => {
+    //   suggestionApi()
+    // }, 170);
 
 
-    return () => {
-      clearTimeout(timer);
-    }
+    // return () => {
+    //   clearTimeout(timer);
+    // }
+
+    suggestionApi()
 
   }, [searchQuery]);
 
 
-  const suggestionApi = async () => {
-    const data = await fetch(`${YOUTUBE_SUGG_API}${searchQuery}`);
+  const suggestionApi = _.debounce(
+    async () => {
+      const data = await fetch(`${YOUTUBE_SUGG_API}${searchQuery}`);
 
-    const json = await data.json();
-    setSuggestionData(json[1]);
-    // console.log(json[1]);
-  }
+      const json = await data.json();
+      setSuggestionData(json[1]);
+      // console.log(json[1]);
+    }, 300)
 
 
   const dispatch = useDispatch()
@@ -55,8 +59,8 @@ const Head = () => {
 
         <img className='h-7 cursor-pointer w-[] select-none' src={youTubeLogo} alt='logo' />
       </div>
-     
-        {/* // search bar  */}
+
+      {/* // search bar  */}
       <div className='my-auto col-span-10 flex flex-col justify-center '>
 
         <div className=' w-full flex flex-row justify-center '>
@@ -73,7 +77,7 @@ const Head = () => {
             <ul className='w-[28rem] bg-gray-50 rounded-xl shadow-md   '>
 
               {
-                suggestionData.map((s, index) => <li className=' px-3 mt-1 hover:bg-slate-200 select-none	flex items-baseline text-lg gap-x-3 shadow-sm' onClick={(e)=>setSearchQuery(e.target)} key={index}><IoSearchOutline />{s}</li>)
+                suggestionData.map((s, index) => <li className=' px-3 mt-1 hover:bg-slate-200 select-none	flex items-baseline text-lg gap-x-3 shadow-sm' onClick={() => setSearchQuery(s)} key={index}><IoSearchOutline />{s}</li>)
               }
 
             </ul>
